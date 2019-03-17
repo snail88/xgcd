@@ -1,33 +1,11 @@
+@import '~antd/dist/antd.css';
 .App {
-  text-align: center;
+    height: calc(100vh);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-image: url(https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1552839509332&di=196d0c3dd290dc34b71a09c966d59836&imgtype=0&src=http%3A%2F%2Fimg.pptjia.com%2Fimage%2F20180416%2F8a0b45b7b68be797ae0ce32c9b319a7d.jpg);
+    background-size: 100%
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
