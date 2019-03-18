@@ -6,7 +6,7 @@ class App extends Component {
     render() {
         return (
             <div className="App">
-                <h1 style={{marginBottom:'1em'}}>秀阁潮店后台管理系统</h1>
+                <h1 style={{marginBottom:'1em'}}>秀阁潮店后台管理系统</h1> //这是一条叻色注释
                 <Login/>
             </div>
         );
