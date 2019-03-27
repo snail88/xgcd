@@ -5,11 +5,15 @@
   "dependencies": {
     "antd": "^3.15.1",
     "axios": "^0.18.0",
+    "echarts": "^4.2.1",
+    "echarts-for-react": "^2.0.15-beta.0",
     "less-loader": "^4.1.0",
     "react": "^16.8.4",
+    "react-countup": "^4.1.2",
     "react-dom": "^16.8.4",
-    "react-router-dom": "^4.4.0",
-    "react-scripts": "2.1.8"
+    "react-router-dom": "4.2.2",
+    "react-scripts": "2.1.8",
+    "style-loader": "0.23.1"
   },
   "scripts": {
     "start": "react-scripts start",
