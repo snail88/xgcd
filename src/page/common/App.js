@@ -8,7 +8,7 @@ import HeaderCustom from './HeaderCustom';
 import MIndex from '../index/Index';
 import Calendars from '../header/Calendars';
 // import Echarts from '../chart/echarts/Echarts';
-// import UForm from '../form/Form';
+import User from '../user/User';
 import noMatch from './404';
 // import RichText from "../richText/RichText";
 // import UploadEditor from "../upload/UploadEditor";
@@ -52,7 +52,7 @@ export default class App extends Component {
                     <Content style={{margin: '0 16px'}}>
                         <Switch>
                             <Route exact path={'/app'} component={MIndex} />
-                            {/*<Route exact path={'/app/form'} component={UForm} />*/}
+                            <Route exact path={'/app/user'} component={User} />
                             <Route exact path={'/app/header/Calendars'} component={Calendars} />
                             {/*<Route exact path={'/app/chart/echarts'} component={Echarts} />*/}
                             {/*<Route exact path={'/app/richText'} component={RichText} />*/}
@@ -61,7 +61,7 @@ export default class App extends Component {
                         </Switch>
                     </Content>
                     <Footer style={{textAlign: 'center'}}>
-                        MSPA ©2017-2018 Created by zysoft
+                        XGCD ©2018-2019 Created by snail丶
                     </Footer>
                 </Layout>
             </Layout>

@@ -85,7 +85,7 @@ const data = [{
 export default class MIndex extends Component {
     CountUp(){
         let imgSrc = ["mail","chat","cart","heart"];
-        let imgName = ["Mails","Dialogue","Carts","Collection"];
+        let imgName = ["邮件","充值记录","今日流水","会员数"];
         let count = ["1379","768","192","413"];
         let cu = imgSrc.map(function(item,index){
             return(
@@ -231,7 +231,7 @@ export default class MIndex extends Component {
                                         <img src={require('../../style/img/0.png')} alt=""/>
                                     </div>
                                     <div className='weather-info'>
-                                        <span>南京</span>&nbsp;<span>16℃</span>
+                                        <span>大同</span>&nbsp;<span>16℃</span>
                                     </div>
                                 </div>
                             </Card>
@@ -310,21 +310,21 @@ export default class MIndex extends Component {
                             </Card>
                         </Col>
                     </Row>
-                    <Row>
-                        <Col md={24}>
-                            <Card>
-                                <div style={{marginBottom:16}}>
-                                    <h3>留言板</h3>
-                                </div>
-                                <Table
-                                    columns={columns}
-                                    dataSource={data}
-                                    scroll={{ x: '110%' }}
-                                    pagination = {false}
-                                />
-                            </Card>
-                        </Col>
-                    </Row>
+                    {/*<Row>*/}
+                        {/*<Col md={24}>*/}
+                            {/*<Card>*/}
+                                {/*<div style={{marginBottom:16}}>*/}
+                                    {/*<h3>留言板</h3>*/}
+                                {/*</div>*/}
+                                {/*<Table*/}
+                                    {/*columns={columns}*/}
+                                    {/*dataSource={data}*/}
+                                    {/*scroll={{ x: '110%' }}*/}
+                                    {/*pagination = {false}*/}
+                                {/*/>*/}
+                            {/*</Card>*/}
+                        {/*</Col>*/}
+                    {/*</Row>*/}
                 </div>
             </div>
         )

@@ -3,6 +3,7 @@ import '../../style/login.less';
 import axios from 'axios';
 import { Form, Icon, Input, Button, Checkbox, message, Spin } from 'antd';
 import config from '../../utils/config'
+import {Redirect} from "react-router-dom";
 const FormItem = Form.Item;
 
 const login = [{
@@ -25,29 +26,22 @@ function PatchUser(values) {  //匹配用户
 };
 
 class NormalLoginForm extends Component {
-    state = {
-        isLoding:false,
-        data:{}
-    };
+
+    constructor(props){
+        super(props);    //这句也很重要,这样才能在里面继承this
+        this.state = {
+            isLoding:false,
+            data:{}
+        };
+        // this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
     handleSubmit = (e) => {
         e.preventDefault();
+        console.log('eeeeee===>',e)
+        console.log('props===>',this.props)
         this.props.form.validateFields((err, values) => {
-            axios.get('http://149.129.117.122:8088/xg/member/list')
-                .then(function (response) {
-                    console.log(response);
-                })
-                .catch(function (error) {
-                    console.log(error);
-                });
-            // axios({
-            //     method: 'post',
-            //     url: `${config.BASE_URL}/user/login`,
-            //     headers:{'Content-Type': 'application/json'},
-            //     data:{
-            //         userName: values.username,
-            //         password: values.password
-            //     }
-            // })
+            // axios.get(`${config.BASE_URL}/member/list`)
             //     .then(function (response) {
             //         console.log(response);
             //     })
@@ -55,22 +49,41 @@ class NormalLoginForm extends Component {
             //         console.log(error);
             //     });
             if (!err) {
-                console.log('Received values of form: ', values);
-                if(PatchUser(values)){
-                    this.setState({
-                        isLoding: true,
-                    });
+                let that = this;
+                this.setState({
+                    isLoding: true,
+                });
+                axios({
+                    method: 'post',
+                    url: `${config.BASE_URL}/user/login`,
+                    headers: {'Content-Type': 'application/json'},
+                    data: {
+                        userName: values.username,
+                        password: values.password
+                    }
+                })
+                    .then(function (response) {
+                        console.log(response);
+                        if (response.data.code === '-100') {
+                            localStorage.setItem('mspa_user', JSON.stringify(values));
+                            localStorage.setItem('token', response.data.data.token);
 
-                    localStorage.setItem('mspa_user',JSON.stringify(values));
-                    message.success('登录成功!'); //成功信息
-                    let that = this;
-                    setTimeout(function() { //延迟进入
-                        that.props.history.push({pathname:'/app',state:values});
-                    }, 2000);
+                            message.success('登录成功!'); //成功信息
+                            // let that = this;
+                            that.props.history.push({pathname: '/app', state: values});
+                        } else {
+                            that.setState({
+                                isLoding: false,
+                            });
+                            message.error('账号密码错误!'); //失败信息
+                            return <Redirect to="/login"/>
+                        }
 
-                }else{
-                    message.error('账号密码错误!'); //失败信息
-                }
+                    })
+                .catch(function (error) {
+                    console.log(error)
+                    message.error('网络异常!');
+                });
             }
         });
     };
@@ -89,14 +102,14 @@ class NormalLoginForm extends Component {
                             {getFieldDecorator('username', {
                                 rules: [{ required: true, message: '请输入用户名!' }],
                             })(
-                                <Input prefix={<Icon type="user" style={{ fontSize: 13 }} />} placeholder="用户名 (admin)" />
+                                <Input prefix={<Icon type="user" style={{ fontSize: 13 }} />} placeholder="用户名" />
                             )}
                         </FormItem>
                         <FormItem>
                             {getFieldDecorator('password', {
                                 rules: [{ required: true, message: '请输入密码!' }],
                             })(
-                                <Input prefix={<Icon type="lock" style={{ fontSize: 13 }} />} type="password" placeholder="密码 (admin)" />
+                                <Input prefix={<Icon type="lock" style={{ fontSize: 13 }} />} type="password" placeholder="密码" />
                             )}
                         </FormItem>
                         <FormItem style={{marginBottom:'0'}}>
