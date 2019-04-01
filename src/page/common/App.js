@@ -10,6 +10,7 @@ import Calendars from '../header/Calendars';
 // import Echarts from '../chart/echarts/Echarts';
 import User from '../user/User';
 import noMatch from './404';
+import Member from "../member/Member";
 // import RichText from "../richText/RichText";
 // import UploadEditor from "../upload/UploadEditor";
 
@@ -53,6 +54,7 @@ export default class App extends Component {
                         <Switch>
                             <Route exact path={'/app'} component={MIndex} />
                             <Route exact path={'/app/user'} component={User} />
+                            <Route exact path={'/app/member'} component={Member} />
                             <Route exact path={'/app/header/Calendars'} component={Calendars} />
                             {/*<Route exact path={'/app/chart/echarts'} component={Echarts} />*/}
                             {/*<Route exact path={'/app/richText'} component={RichText} />*/}

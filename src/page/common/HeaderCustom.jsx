@@ -52,7 +52,7 @@ export default class HeaderCustom extends Component{
                         </span>}
                         >
                         <Menu.Item key="logout" style={{textAlign:'center'}} className="logout">
-                            <span onClick={this.logout}>logout</span>
+                            <span onClick={this.logout}>退出登录</span>
                         </Menu.Item>
                     </SubMenu>
                 </Menu>

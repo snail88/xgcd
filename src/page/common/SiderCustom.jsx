@@ -54,7 +54,7 @@ export default class SiderCustom extends Component{
             trigger={null}
             collapsed={collapsed}
             >
-                <div className="logo" style={collapsed?{backgroundSize:'70%'}:{backgroundSize:'30%'}}/>
+                <div className="logo" />
                 <Menu
                     theme="dark"
                     mode="inline"
@@ -68,22 +68,28 @@ export default class SiderCustom extends Component{
                         <Link to={"/app"}><Icon type="home" /><span>首页</span></Link>
                     </Menu.Item>
                     <Menu.Item key={"/app/user"}>
-                        <Link to={"/app/user"}><Icon type="form" /><span>用户管理</span></Link>
+                        <Link to={"/app/user"}><Icon type="user" /><span>用户管理</span></Link>
                     </Menu.Item>
-                    <SubMenu
-                    key="/app/chart"
-                    title={<span><Icon type="area-chart" /><span>图表</span></span>}
-                    >
-                        <Menu.Item key="/app/chart/echarts">
-                            <Link to={'/app/chart/echarts'}><span>echarts</span></Link>
-                        </Menu.Item>
-                    </SubMenu>
-                    <Menu.Item key="/app/richText">
-                        <Link to={'/app/richText'}><Icon type="edit" /><span>富文本</span></Link>
+                    <Menu.Item key="/app/member">
+                        <Link to={'/app/member'}><Icon type="solution" /><span>会员管理</span></Link>
                     </Menu.Item>
-                    <Menu.Item key="/app/upload">
-                        <Link to={'/app/upload'}><Icon type="upload" /><span>文件上传</span></Link>
+                    <Menu.Item key="/app/RecordsOfConsumption">
+                        <Link to={'/app/RecordsOfConsumption'}><Icon type="pay-circle" /><span>会员消费记录</span></Link>
                     </Menu.Item>
+                    {/*<SubMenu*/}
+                    {/*key="/app/chart"*/}
+                    {/*title={<span><Icon type="area-chart" /><span>图表</span></span>}*/}
+                    {/*>*/}
+                        {/*<Menu.Item key="/app/chart/echarts">*/}
+                            {/*<Link to={'/app/chart/echarts'}><span>echarts</span></Link>*/}
+                        {/*</Menu.Item>*/}
+                    {/*</SubMenu>*/}
+                    {/*<Menu.Item key="/app/richText">*/}
+                        {/*<Link to={'/app/richText'}><Icon type="edit" /><span>富文本</span></Link>*/}
+                    {/*</Menu.Item>*/}
+                    {/*<Menu.Item key="/app/upload">*/}
+                        {/*<Link to={'/app/upload'}><Icon type="upload" /><span>文件上传</span></Link>*/}
+                    {/*</Menu.Item>*/}
                 </Menu>
             </Sider>
         )
