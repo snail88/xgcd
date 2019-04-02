@@ -1,0 +1,22 @@
+@-webkit-keyframes fadeOutDown {
+	0%{
+		opacity:1
+	}
+	to{
+		-webkit-transform:translate3d(0,100%,0);
+		opacity:0;transform:translate3d(0,100%,0)
+	}
+}
+@keyframes fadeOutDown {
+	0%{
+		opacity:1
+	}
+	to{
+		-webkit-transform:translate3d(0,100%,0);
+		opacity:0;transform:translate3d(0,100%,0)
+	}
+}
+
+i {
+	animation: fadeOutDown 3s infinite linear;
+}
