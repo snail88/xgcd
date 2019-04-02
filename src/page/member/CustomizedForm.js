@@ -78,13 +78,13 @@ class CustomizedForm extends Component{
                             <DatePicker locale={locale} format="YYYY-MM-DD"/>
                         )}
                     </Form.Item>
-                    <FormItem label="年龄" {...FormItemLayout} hasFeedback>
-                        {getFieldDecorator('age', {
-                            rules: [{ required: true, message: '请输入年龄！' }],
-                        })(
-                            <InputNumber min={0} max={199} step={1} />
-                        )}
-                    </FormItem>
+                    {/*<FormItem label="年龄" {...FormItemLayout} hasFeedback>*/}
+                        {/*{getFieldDecorator('age', {*/}
+                            {/*rules: [{ required: true, message: '请输入年龄！' }],*/}
+                        {/*})(*/}
+                            {/*<InputNumber min={0} max={199} step={1} />*/}
+                        {/*)}*/}
+                    {/*</FormItem>*/}
                     {/*<FormItem label="地址" {...FormItemLayout} hasFeedback>*/}
                         {/*{getFieldDecorator('address', {*/}
                             {/*rules: [{ required: true, message: '请选择地址！' }],*/}
@@ -93,7 +93,7 @@ class CustomizedForm extends Component{
                         {/*)}*/}
                     {/*</FormItem>*/}
                     <FormItem label="手机号" {...FormItemLayout} hasFeedback>
-                        {getFieldDecorator('phone', {
+                        {getFieldDecorator('tel', {
                             rules: [{
                                 pattern: /^1(3|4|5|7|8)\d{9}$/, message: "手机号码格式不正确！"
                             },{
@@ -103,29 +103,36 @@ class CustomizedForm extends Component{
                             <Input addonBefore={"+86"} style={{ width: '100%' }} />
                         )}
                     </FormItem>
-                    <FormItem label="邮箱" {...FormItemLayout} hasFeedback>
-                        {getFieldDecorator('email', {
-                            rules: [{
-                                type: 'email', message: '邮箱格式不正确！',
-                            }, {
-                                required: true, message: '请输入邮箱！',
-                            }],
+                    <FormItem label="余额" {...FormItemLayout} hasFeedback>
+                        {getFieldDecorator('balance', {
+                            rules: [{ required: true, message: '请输入数字支持小数点！' }],
                         })(
-                            <Input />
+                            <InputNumber min={0} max={9999} step={1} />
                         )}
                     </FormItem>
-                    <FormItem label="网址" {...FormItemLayout} hasFeedback>
-                        {getFieldDecorator('website', {
-                            rules: [{required: true, message: '请输入网址！'}],
-                        })(
-                            <AutoComplete
-                                dataSource={websiteOptions}
-                                onChange={this.handleWebsiteChange}
-                            >
-                                <Input/>
-                            </AutoComplete>
-                        )}
-                    </FormItem>
+                    {/*<FormItem label="邮箱" {...FormItemLayout} hasFeedback>*/}
+                        {/*{getFieldDecorator('email', {*/}
+                            {/*rules: [{*/}
+                                {/*type: 'email', message: '邮箱格式不正确！',*/}
+                            {/*}, {*/}
+                                {/*required: true, message: '请输入邮箱！',*/}
+                            {/*}],*/}
+                        {/*})(*/}
+                            {/*<Input />*/}
+                        {/*)}*/}
+                    {/*</FormItem>*/}
+                    {/*<FormItem label="网址" {...FormItemLayout} hasFeedback>*/}
+                        {/*{getFieldDecorator('website', {*/}
+                            {/*rules: [{required: true, message: '请输入网址！'}],*/}
+                        {/*})(*/}
+                            {/*<AutoComplete*/}
+                                {/*dataSource={websiteOptions}*/}
+                                {/*onChange={this.handleWebsiteChange}*/}
+                            {/*>*/}
+                                {/*<Input/>*/}
+                            {/*</AutoComplete>*/}
+                        {/*)}*/}
+                    {/*</FormItem>*/}
                 </Form>
             </Modal>
         );

@@ -76,6 +76,9 @@ export default class SiderCustom extends Component{
                     <Menu.Item key="/app/RecordsOfConsumption">
                         <Link to={'/app/RecordsOfConsumption'}><Icon type="pay-circle" /><span>会员消费记录</span></Link>
                     </Menu.Item>
+                    <Menu.Item key="/app/PurchaseRecords">
+                        <Link to={'/app/PurchaseRecords'}><Icon type="schedule" /><span>进货记录</span></Link>
+                    </Menu.Item>
                     {/*<SubMenu*/}
                     {/*key="/app/chart"*/}
                     {/*title={<span><Icon type="area-chart" /><span>图表</span></span>}*/}

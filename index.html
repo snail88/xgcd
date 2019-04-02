@@ -11,8 +11,8 @@
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
     <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
 	
-	<link rel="stylesheet" href="./font/iconfont.css">
-	<link rel="stylesheet" href="./index.css">
+	<!--<link rel="stylesheet" href="./font/iconfont.css">-->
+	<!--<link rel="stylesheet" href="./index.css">-->
     <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
@@ -23,34 +23,34 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>React App</title>
-	<script>
-		function color16(){
-		var r = Math.floor(Math.random()*256);
-		var g = Math.floor(Math.random()*256);
-		var b = Math.floor(Math.random()*256);
-		var color = '#'+r.toString(16)+g.toString(16)+b.toString(16);
-		return color;
-		}
-		addEventListener('mousemove', (ev) => {
-			// console.log(ev)
-			let i = document.createElement('i')
-			i.className = 'iconfont icon-xingxingshixin'
+	<!--<script>-->
+		<!--function color16(){-->
+		<!--var r = Math.floor(Math.random()*256);-->
+		<!--var g = Math.floor(Math.random()*256);-->
+		<!--var b = Math.floor(Math.random()*256);-->
+		<!--var color = '#'+r.toString(16)+g.toString(16)+b.toString(16);-->
+		<!--return color;-->
+		<!--}-->
+		<!--addEventListener('mousemove', (ev) => {-->
+			<!--// console.log(ev)-->
+			<!--let i = document.createElement('i')-->
+			<!--i.className = 'iconfont icon-xingxingshixin'-->
 
-			let screenY = ev.offsetY;
-			let screenX = ev.offsetX;
-			if ( screenY < 20 || screenX < 20 ) return
-			i.style.position = 'absolute'
-			i.style.top = screenY + 'px'
-			i.style.left = screenX + 'px'
-			i.style.color= color16()
+			<!--let screenY = ev.offsetY;-->
+			<!--let screenX = ev.offsetX;-->
+			<!--if ( screenY < 20 || screenX < 20 ) return-->
+			<!--i.style.position = 'absolute'-->
+			<!--i.style.top = screenY + 'px'-->
+			<!--i.style.left = screenX + 'px'-->
+			<!--i.style.color= color16()-->
 
-			document.body.appendChild(i)
+			<!--document.body.appendChild(i)-->
 
-			setTimeout(() => {
-				document.body.removeChild(i)
-			}, 300)
-		}, true)
-	</script
+			<!--setTimeout(() => {-->
+				<!--document.body.removeChild(i)-->
+			<!--}, 300)-->
+		<!--}, true)-->
+	<!--</script>-->
   </head>
   <body>
     <noscript>
