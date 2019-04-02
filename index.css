@@ -17,6 +17,12 @@
 	}
 }
 
+@-webkit-keyframes rotateOut{0%{-webkit-transform-origin:center;opacity:1;transform-origin:center}to{-webkit-transform:rotate(200deg);-webkit-transform-origin:center;opacity:0;transform:rotate(200deg);transform-origin:center}}
+
 i {
-	animation: fadeOutDown 3s infinite linear;
+	animation: rotateOut 0.3s infinite linear;
 }
+.iconfont {
+	font-size:25px
+}
+
