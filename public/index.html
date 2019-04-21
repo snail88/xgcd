@@ -13,36 +13,36 @@
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
     -->
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <link rel="stylesheet" href="%PUBLIC_URL%/font/iconfont.css">
-	  <style>
-      @-webkit-keyframes fadeOutDown {
-        0%{
-          opacity: 1
-        }
-        to{
-          -webkit-transform: translate3d(0,100%,0);
-          opacity: 0;
-          transform: translate3d(0,100%,0)
-        }
-      }
-      @keyframes fadeOutDown {
-        0%{
-          opacity:1
-        }
-        to{
-          -webkit-transform:translate3d(0,100%,0);
-          opacity:0;transform:translate3d(0,100%,0)
-        }
-      }
+    <!--<link rel="stylesheet" href="%PUBLIC_URL%/font/iconfont.css">-->
+	  <!--<style>-->
+      <!--@-webkit-keyframes fadeOutDown {-->
+        <!--0%{-->
+          <!--opacity: 1-->
+        <!--}-->
+        <!--to{-->
+          <!-- -webkit-transform: translate3d(0,100%,0);-->
+          <!--opacity: 0;-->
+          <!--transform: translate3d(0,100%,0)-->
+        <!--}-->
+      <!--}-->
+      <!--@keyframes fadeOutDown {-->
+        <!--0%{-->
+          <!--opacity:1-->
+        <!--}-->
+        <!--to{-->
+          <!-- -webkit-transform:translate3d(0,100%,0);-->
+          <!--opacity:0;transform:translate3d(0,100%,0)-->
+        <!--}-->
+      <!--}-->
 
-      @-webkit-keyframes rotateOut{0%{-webkit-transform-origin:center;opacity:1;transform-origin:center}to{-webkit-transform:rotate(200deg);-webkit-transform-origin:center;opacity:0;transform:rotate(200deg);transform-origin:center}}
+      <!--@-webkit-keyframes rotateOut{0%{-webkit-transform-origin:center;opacity:1;transform-origin:center}to{-webkit-transform:rotate(200deg);-webkit-transform-origin:center;opacity:0;transform:rotate(200deg);transform-origin:center}}-->
 
-      .mousemove {
-        z-index: 9999999;
-        font-size: 30px;
-        animation: rotateOut .5s infinite linear;
-      }
-    </style>
+      <!--.mousemove {-->
+        <!--z-index: 9999999;-->
+        <!--font-size: 30px;-->
+        <!--animation: rotateOut .5s infinite linear;-->
+      <!--}-->
+    <!--</style>-->
       <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
@@ -55,37 +55,37 @@
     <title>React App</title>
   </head>
   <body>
-    <script>
-      function color16(){
-        var r = Math.floor(Math.random()*256);
-        var g = Math.floor(Math.random()*256);
-        var b = Math.floor(Math.random()*256);
-        var color = '#'+r.toString(16)+g.toString(16)+b.toString(16);
-        return color;
-      }
-      addEventListener('mousemove', (ev) => {
-        ev.stopPropagation()
-        ev.preventDefault()
-        ev.cancelBubble = true
-        let i = document.createElement('font')
-        i.className = 'iconfont icon-xingxingshixin mousemove'
-      
-        let screenY = ev.pageY;
-        let screenX = ev.clientX;
-        if ( screenY < 20 || screenX < 20 ) return
-        i.style.position = 'absolute'
-        i.style.top = screenY + 'px'
-        i.style.left = screenX + 'px'
-        i.style.color= color16()
-      
-        document.body.appendChild(i)
-      
-        setTimeout(() => {
-          document.body.removeChild(i)
-        }, 300)
-      }, false)
-        
-    </script>
+    <!--<script>-->
+      <!--function color16(){-->
+        <!--var r = Math.floor(Math.random()*256);-->
+        <!--var g = Math.floor(Math.random()*256);-->
+        <!--var b = Math.floor(Math.random()*256);-->
+        <!--var color = '#'+r.toString(16)+g.toString(16)+b.toString(16);-->
+        <!--return color;-->
+      <!--}-->
+      <!--addEventListener('mousemove', (ev) => {-->
+        <!--ev.stopPropagation()-->
+        <!--ev.preventDefault()-->
+        <!--ev.cancelBubble = true-->
+        <!--let i = document.createElement('font')-->
+        <!--i.className = 'iconfont icon-xingxingshixin mousemove'-->
+
+        <!--let screenY = ev.pageY;-->
+        <!--let screenX = ev.clientX;-->
+        <!--if ( screenY < 20 || screenX < 20 ) return-->
+        <!--i.style.position = 'absolute'-->
+        <!--i.style.top = screenY + 'px'-->
+        <!--i.style.left = screenX + 'px'-->
+        <!--i.style.color= color16()-->
+
+        <!--document.body.appendChild(i)-->
+
+        <!--setTimeout(() => {-->
+          <!--document.body.removeChild(i)-->
+        <!--}, 300)-->
+      <!--}, false)-->
+
+    <!--</script>-->
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
     <!--

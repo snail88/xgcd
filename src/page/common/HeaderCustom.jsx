@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import { Layout, Icon, Menu, Badge } from 'antd';
-import { Link } from 'react-router-dom';
+import {Layout, Icon, Menu, Badge, message} from 'antd';
+import {Link, Redirect} from 'react-router-dom';
 import history from './history';
+import axios from "axios";
+import config from "../../utils/config";
 
 const { Header } = Layout;
 const SubMenu = Menu.SubMenu;
@@ -24,8 +26,35 @@ export default class HeaderCustom extends Component{
         });
     };
     logout(){
-        localStorage.removeItem("mspa_user");
-        history.push('/login');
+        let user = JSON.parse(localStorage.getItem("user"))
+        console.log('user===>>>>',user)
+        axios({
+            method: 'delete',
+            url: `${config.BASE_URL}/user/logout`,
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': localStorage.getItem("token")
+            },
+            // data: {
+            //     id: user.id,
+            // }
+        })
+            .then(function (response) {
+                console.log(response);
+                if (response.data.code === '-100') {
+                    localStorage.removeItem("mspa_user");
+                    history.push('/login');
+                    message.success('退出登录成功!')
+                } else {
+                    message.error('系统错误!请联系管理员!'); //失败信息
+                }
+
+            })
+            .catch(function (error) {
+                console.log(error)
+                message.error('网络异常!');
+            });
+
     }
     render(){
         return(

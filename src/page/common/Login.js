@@ -67,6 +67,7 @@ class NormalLoginForm extends Component {
                         if (response.data.code === '-100') {
                             localStorage.setItem('mspa_user', JSON.stringify(values));
                             localStorage.setItem('token', response.data.data.token);
+                            localStorage.setItem('user', JSON.stringify(response.data.data));
 
                             message.success('登录成功!'); //成功信息
                             // let that = this;
