@@ -103,13 +103,13 @@ class CustomizedForm extends Component{
                             <Input addonBefore={"+86"} style={{ width: '100%' }} />
                         )}
                     </FormItem>
-                    <FormItem label="余额" {...FormItemLayout} hasFeedback>
-                        {getFieldDecorator('balance', {
-                            rules: [{ required: true, message: '请输入数字支持小数点！' }],
-                        })(
-                            <InputNumber min={0} max={9999} step={1} />
-                        )}
-                    </FormItem>
+                    {/*<FormItem label="余额" {...FormItemLayout} hasFeedback>*/}
+                        {/*{getFieldDecorator('balance', {*/}
+                            {/*rules: [{ required: true, message: '请输入数字支持小数点！' }],*/}
+                        {/*})(*/}
+                            {/*<InputNumber min={0} max={9999} step={1} />*/}
+                        {/*)}*/}
+                    {/*</FormItem>*/}
                     {/*<FormItem label="邮箱" {...FormItemLayout} hasFeedback>*/}
                         {/*{getFieldDecorator('email', {*/}
                             {/*rules: [{*/}

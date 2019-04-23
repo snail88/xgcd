@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import BreadcrumbCustom from '../common/BreadcrumbCustom';
 import CollectionCreateForm from './CustomizedForm'
+import TUCForm from './TopUpConsumptionFrom'
 import {
     Table,
     Row,
@@ -15,7 +16,8 @@ import {
     message,
     Spin,
     Divider,
-    Tag
+    Tag,
+    notification
 } from 'antd';
 import axios from 'axios';
 import config from '../../utils/config'
@@ -32,7 +34,9 @@ export default class Member extends Component {
             isLoding: false,
             isUpdate:false,
             visible: false,
-            id:''
+            id:'',
+            isConsumption:false,
+            TUCvisible:false
         }
     }
 
@@ -185,6 +189,10 @@ export default class Member extends Component {
         this.form = form;
     };
 
+    saveFormRef1 = (form) => {
+        this.form1 = form;
+    };
+
     //创建
     handleCreate = () => {
         let that = this;
@@ -226,8 +234,147 @@ export default class Member extends Component {
         });
     };
 
+    _topUp = (data) =>{
+        this.setState({
+            isConsumption:false,
+            TUCvisible:true,
+            id:data.id
+        });
+        const form = this.form1;
+        form.setFieldsValue({
+            // id: data.id,
+            name: data.name,
+            // sex: data.sex,
+            // age: moment(moment()).diff(moment(data.brith), 'years') + 1,
+            // brith: moment(data.brith),
+            balance: data.balance,
+            // tel: data.tel,
+            // email: dataSource[index].email,
+            // website: dataSource[index].website,
+        });
+    }
+
+    _consume = (data) =>{
+        this.setState({
+            isConsumption:true,
+            TUCvisible:true,
+            id:data.id
+        });
+        const form = this.form1;
+        form.setFieldsValue({
+            name: data.name,
+            balance: data.balance,
+        });
+    }
+
+    _saveConsume  = () =>{
+        let that = this;
+        const form = this.form1;
+        form.validateFields((err, values) => {
+            if (err) {
+                return;
+            }
+            axios({
+                method: 'post',
+                url: `${config.BASE_URL}/member/consume`,
+                headers: {'Content-Type': 'application/x-www-form-urlencoded', 'Authorization': localStorage.getItem("token")},
+                params: {
+                    ...values,
+                    'id':that.state.id
+                },
+            })
+                .then(function (response) {
+                    console.log(response);
+                    if (response.data.code === '-100') {
+                        that._getUserList();
+                        // message.success(response.data.message); //成功信息
+                        that.openNotification('success','会员<<  '+response.data.data.name+'  >>消费成功!',response.data.message)
+                    } else {
+                        // message.error(response.data.message); //失败信息
+                        that.openNotification('error','消费失败!',response.data.message)
+                    }
+
+                })
+                .catch(function (error) {
+                    console.log(error)
+                    message.error('网络异常!');
+                });
+
+            form.resetFields();
+            this.setState({
+                TUCvisible: false,
+            });
+        });
+    }
+
+    _saveTopUp = () =>{
+        let that = this;
+        const form = this.form1;
+        form.validateFields((err, values) => {
+            if (err) {
+                return;
+            }
+            const value = {
+                ...values,
+                'id':that.state.id
+            };
+            // console.log('Received values of form: ', value);
+            axios({
+                method: 'post',
+                url: `${config.BASE_URL}/member/charge`,
+                headers: {'Content-Type': 'application/x-www-form-urlencoded', 'Authorization': localStorage.getItem("token")},
+                params: {
+                    ...values,
+                    'id':that.state.id
+                },
+            })
+                .then(function (response) {
+                    console.log(response);
+                    if (response.data.code === '-100') {
+                        that._getUserList();
+                        that.openNotification('success','会员<<  '+response.data.data.name+'  >>充值成功!',response.data.message)
+                        // message.success(response.data.message); //成功信息
+                    } else {
+                        // message.error(response.data.message); //失败信息
+                        that.openNotification('error','充值失败!',response.data.message)
+                    }
+
+                })
+                .catch(function (error) {
+                    console.log(error)
+                    message.error('网络异常!');
+                });
+
+            form.resetFields();
+            this.setState({
+                TUCvisible: false,
+            });
+        });
+    }
+
+    _cencelTUC = () =>{
+        this.setState({
+            TUCvisible:false,
+        });
+    }
+
+    openNotification = (type,message,description) => {
+        // notification.open({
+        //     message: message,
+        //     description: description,
+        //     // onClick: () => {
+        //     //     console.log('Notification Clicked!');
+        //     // },
+        // });
+        notification[type]({
+            message: message,
+            description: description,
+            duration:null
+        });
+    };
+
     render() {
-        const {visible,isUpdate} = this.state;
+        const {visible,isUpdate,TUCvisible,isConsumption} = this.state;
         const columns = [{
             title: '会员编号',
             dataIndex: 'id',
@@ -254,13 +401,13 @@ export default class Member extends Component {
         }, {
             title: '余额',
             dataIndex: 'balance',
-            render: val => (val > 100 ?
+            render: val => (val > 30 ?
                     <span>
                     <Tag color='green'>{val}</Tag>
                 </span>
                     :
                     <span>
-                    <Tag color='volcano'>{val}</Tag>
+                    <Tag color='red'>{val}</Tag>
                 </span>
 
             ),
@@ -287,9 +434,9 @@ export default class Member extends Component {
                         {/*<Icon type="edit" /> 修改*/}
                         {/*</span>*/}
                         <Divider type="vertical" style={{backgroundColor: '#1890ff'}}/>
-                        <a href="#">充值</a>
+                        <a href="#" onClick={()=>this._topUp(record)}>充值</a>
                         <Divider type="vertical" style={{backgroundColor: '#1890ff'}}/>
-                        <a href="#">扣费</a>
+                        <a href="#" onClick={()=>this._consume(record)}>扣费</a>
                         <Divider type="vertical" style={{backgroundColor: '#1890ff'}}/>
                         <a href="#">消费记录</a>
                     </span>
@@ -342,6 +489,14 @@ export default class Member extends Component {
                     :
                     <CollectionCreateForm ref={this.saveFormRef} visible={visible} onCancel={this.handleCancel}
                                           onCreate={this.handleCreate} title="新增会员" okText="新建" cancelText="取消"/>
+                }
+                {isConsumption ?
+                    <TUCForm  ref={this.saveFormRef1} visible={TUCvisible} onCancel={this._cencelTUC}
+                              onCreate={()=>this._saveConsume()} label="消费" title="消费" okText="确定" cancelText="取消"/>
+                    :
+                    <TUCForm  ref={this.saveFormRef1} visible={TUCvisible} onCancel={this._cencelTUC}
+                              onCreate={()=>this._saveTopUp()} label="充值" title="充值" okText="确定" cancelText="取消"/>
+
                 }
             </div>
         )
