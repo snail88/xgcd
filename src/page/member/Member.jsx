@@ -36,7 +36,9 @@ export default class Member extends Component {
             visible: false,
             id:'',
             isConsumption:false,
-            TUCvisible:false
+            TUCvisible:false,
+            userName:'',
+            tel:''
         }
     }
 
@@ -44,7 +46,7 @@ export default class Member extends Component {
         this._getUserList()
     }
 
-    _getUserList = () => {
+    _getUserList = (data) => {
         console.log(localStorage.getItem("token"))
         let that = this;
         that.setState({
@@ -52,9 +54,10 @@ export default class Member extends Component {
             visible: false,
         });
         axios({
-            method: 'get',
+            method: 'post',
             url: `${config.BASE_URL}/member/list`,
             headers: {'Authorization': localStorage.getItem("token")},
+            data:data
         })
             .then(function (response) {
                 // console.log(response);
@@ -150,7 +153,7 @@ export default class Member extends Component {
                 'brith': values['brith'].format('YYYY-MM-DD'),
                 'id':that.state.id
             };
-            // console.log('Received values of form: ', value);
+            console.log('Received values of form: ', value);
             axios({
                 method: 'post',
                 url: `${config.BASE_URL}/member/update`,
@@ -373,6 +376,18 @@ export default class Member extends Component {
         });
     };
 
+    _search = () =>{
+        // let userName = this.refs.userNameInput.state.value
+        // let tel = this.refs.telInput.state.value
+        let data = {
+            name:this.state.userName,
+            tel:this.state.tel
+        }
+        this._getUserList(data)
+        // console.log(this.state.userName)
+        // console.log(this.state.tel)
+    }
+
     render() {
         const {visible,isUpdate,TUCvisible,isConsumption} = this.state;
         const columns = [{
@@ -453,7 +468,13 @@ export default class Member extends Component {
                     <Col span={7}>
                         <Input
                             placeholder="姓名"
-                            // onSearch={value => console.log(value)}
+                            // ref='userNameInput'
+                            value={this.state.userName}
+                            onChange={event => {
+                                this.setState({
+                                    userName:event.target.value
+                                })
+                            }}
                             size="large"
                         />
                     </Col>
@@ -463,17 +484,35 @@ export default class Member extends Component {
                     <Col span={7}>
                         <Input
                             placeholder="手机号"
-                            // onSearch={value => console.log(value)}
+                            // ref='telInput'
+                            value={this.state.tel}
+                            onChange={event => {
+                                const reg = /^-?(0|[1-9][0-9]*)(\.[0-9]*)?$/;
+                                if ((!Number.isNaN(event.target.value) && reg.test(event.target.value)) || event.target.value === '' || event.target.value === '-') {
+                                    this.setState({
+                                        tel:event.target.value
+                                    })
+                                }
+
+                            }}
                             size="large"
                         />
                     </Col>
                     <Col span={2}></Col>
                     <Col span={2}>
-                        <Button type="primary" icon="search" size={'large'}>查找</Button>
+                        <Button type="primary" icon="search" size={'large'} onClick={()=>{
+                            this._search()
+                        }}>查找</Button>
                     </Col>
                     {/*<Col span={1} ></Col>*/}
                     <Col span={2}>
-                        <Button type="primary" icon="reload" size={'large'}>重置</Button>
+                        <Button type="primary" icon="reload" size={'large'} onClick={()=>{
+                            this.setState({
+                                userName:'',
+                                tel:''
+                            })
+                            this._getUserList()
+                        }}>重置</Button>
                     </Col>
                     {/*<Col span={1} ></Col>*/}
                     <Col span={2}>
