@@ -96,7 +96,7 @@ class NormalLoginForm extends Component {
             <div className="login">
                 <div className="login-form">
                     <div className="login-logo">
-                        <div className="login-name">秀阁潮店后台管理系统...</div>
+                        <div className="login-name">秀阁潮店11111后台管理系统</div>
                     </div>
                     <Form onSubmit={this.handleSubmit} style={{maxWidth: '300px'}}>
                         <FormItem>
