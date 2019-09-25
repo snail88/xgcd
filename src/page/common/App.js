@@ -11,6 +11,7 @@ import Calendars from '../header/Calendars';
 import User from '../user/User';
 import noMatch from './404';
 import Member from "../member/Member";
+import RecordsOfConsumption from '../member/RecordsOfConsumption'
 // import RichText from "../richText/RichText";
 // import UploadEditor from "../upload/UploadEditor";
 
@@ -56,6 +57,7 @@ export default class App extends Component {
                             <Route exact path={'/app/user'} component={User} />
                             <Route exact path={'/app/member'} component={Member} />
                             <Route exact path={'/app/header/Calendars'} component={Calendars} />
+                            <Route exact path={'/app/RecordsOfConsumption'} component={RecordsOfConsumption} />
                             {/*<Route exact path={'/app/chart/echarts'} component={Echarts} />*/}
                             {/*<Route exact path={'/app/richText'} component={RichText} />*/}
                             {/*<Route exact path={'/app/upload'} component={UploadEditor} />*/}
